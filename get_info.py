@@ -44,7 +44,7 @@ def query_printer(search_id, zebra_commands):
                 received_dict[key] = data_received.strip().strip('"')
                 time.sleep(0.1)  # sleep to prevent out of order results (ex: ip address returned for hostname)
     except (TimeoutError, OSError, socket.timeout, socket.gaierror, socket.herror) as e:
-        logging.error(f"-- {search_param} - unable to reach - {type(e).__name__} --")
+        print(f"-- {search_param} - unable to reach - {type(e).__name__} --")
     finally:
         s.close()
 
