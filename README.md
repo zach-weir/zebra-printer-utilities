@@ -1,15 +1,13 @@
-# Zebra Printer Utilities
-This repository is a collection of scripts I've created to manage Zebra label printers remotely. 
+## Zebra Printer Utilities
+Collection of scripts to manage Zebra label printers remotely. 
 
-**Example of utilities:**
-- Get printer information
-
-# Pre-requisites
+## Pre-requisites
 - Python v3.14+
-- Mac or Linux computer (WINDOWS SUPPORT - TBD)
+- Mac or Linux computer
+    - *Windows support is TBD (currently only works on Mac/Linux computers)*
 - Printer name or IP address
 
-# Supported devices
+## Supported devices
 - ZD621
 - ZQ620
 - ZQ620 Plus
@@ -17,6 +15,12 @@ This repository is a collection of scripts I've created to manage Zebra label pr
 - ZT410
 - ZT411
 
-# Utility
-## get_info
-Script to query Zebra label printer to gather information such as printer friendly name, MAC address, printer firmware version, etc.
+## Utility
+### get_info.py
+Query printer to gather information such as friendly name, MAC address, printer firmware version, etc.
+
+### set_configs.py
+Send golden CONFIG.SGD file to printers to apply standard settings if any have been changed.
+
+### update_firmware.py
+Send firmware files (in chunks) to update firmware version on printers.
