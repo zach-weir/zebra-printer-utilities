@@ -1,11 +1,11 @@
 """
-    .SCRIPT NAME:   get_info.py
-    .DESCRIPTION:   Gets printer information (hostname, serial number, wireless config settings, etc.) of a specified printer
-    .MODIFIED:      12.27.2025
-    .USAGE:         py get_info.py <HOSTNAME_OR_IP>
+    .SCRIPT NAME:   config_update.py
+    .DESCRIPTION:   Sends golden configuration file to specified printer
+    .MODIFIED:      12.28.2025
+    .USAGE:         py config_update.py <HOSTNAME_OR_IP>
 
     .UPDATES:
-    - 12.27.25 - initial creation
+    - 12.28.25 - initial creation
 """
 
 import logging
@@ -83,6 +83,9 @@ DATA_CATEGORIES = {
     "Hardware": ["Model", "Serial Number", "MAC Address", "ZPL Mode", "LinkOS Version", "Firmware Version"]
 }
 
+def send_config_file():
+    pass
+
 ###############################
 #        BEGIN  SCRIPT        #
 ###############################
@@ -95,7 +98,6 @@ if len(sys.argv) != 2:
 
 search_param = sys.argv[1].strip()
 
-# query for hostname
 try:
     if "10." in search_param:
         printer_id = search_param.strip()  # remove any spaces
@@ -107,18 +109,11 @@ except (socket.gaierror) as e:
 
 printer_data = query_printer(printer_id, ZEBRA_MESSAGES)
 
-for key in printer_data:
-    if key in ["Status", "MAC Address"]:
-        printer_data[key] = str(printer_data.get(key, "")).upper()
+# send config file
 
-for category, keys in DATA_CATEGORIES.items():
-    print(f"{category.upper()}\n--------------------------------------------------")
-    for key in keys:
-        if key in ["Default Port", "Alternate Port"]:
-            pass
-        value = printer_data.get(key, "")
-        print(f"{key.ljust(25, '.')} {value}")
-    print("\n", end='')
+# sleep while printer reboots
+
+# query printer configs to validate settings changed
 
 time_end = datetime.now()  # end time
 
